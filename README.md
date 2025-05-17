@@ -19,4 +19,19 @@ The Alter do Chao aquifer is located in tge Amazon region of Brazil. It serves a
 | GLDAS | NASA GSFC | 0.25° spatial  | Soil moisture, snow, canopy water components |
 | Well Measurements | RIMAS (Brazil) | Point-based  | In-situ groundwater level measurements |
 
+# Methodology
+1. d
+
+
+
+
+
+
+
+
+
+
+# Results
+The analysis reveals distinct seasonal patterns in groundwater storage with a rough 1-2 month delay. 
+
 
