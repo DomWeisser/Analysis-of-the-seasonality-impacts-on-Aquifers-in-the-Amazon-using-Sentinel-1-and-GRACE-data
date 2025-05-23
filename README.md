@@ -87,19 +87,16 @@ GRACE-FO data at 0.5* spatial resolution and GLDAS at 0.25* spatial resolution w
 The graph represents change detection rather than absolute volume calculations, tracking how groundwater storage increases or decreases relative to baseline conditions, where positive values indicate groundwater gain and negative values indicate depletion. The data reveals a pronounced seasonal cycle that closely follows the Amazon's distinct wet and dry seasons. From January to June, groundwater storage levels progressively increase from severe depletion (-0.83 m) to the least depleted state (-0.21 m), with the peak recovery occurring in June. This timing aligns with established hydrogeological principles, as there is typically a one to two-month lag between peak rainfall and groundwater recharge due to infiltration and percolation processes. From June onwards, groundwater levels steadily decrease throughout the dry season, reaching maximum depletion in November (-1.04 m) before showing signs of recovery in December (-0.99 m) as early wet season precipitation begins to influence groundwater levels. This pattern demonstrates the rapid response characteristics of the Alter do Chão Aquifer system, which is consistent with the relatively shallow depth and high permeability of Amazonian aquifers. The observed seasonal amplitude of approximately 0.83 meters between peak recovery and maximum depletion underscores the aquifer's sensitivity to climatic variability and its dependence on consistent seasonal precipitation for sustainable groundwater storage.
 
 ## 3.3 Interpolation of Well Data
+The in-situ well measyrements provide ground-truth satellite-based groundwater estimates, but their sparse spatial distribution necessitates interpolation to create continous surfaces across the region of interest. 
+
+I implemented Inverse Distance Weighting (IDW) interpolation to spatially extrapolate groundwater level measurements from the 4 RIMAS wells across the whole region of interest at 0.01 degree resolution. IDW applies distance-weighted averages of known data, with closer wells receiving greater influence
+
+$w_i = \frac{1}{(d_i + 0.01)^p}$
 
 
 
 
 
-
-
-## 3.4 Spatial Interpolation of Well Data
-- Data preparation: Well data was filtered for each month and prepared for interpolation.
-- IDW interpolation: Inverse Distance Weighting interpolation was applied with a power parameter of 2 and a smoothing factor of 0.01.
-- Grid creation: A regular grid with 0.01° resolution was created for interpolation output.
-- Boundary masking: Interpolation was constrained to the ACA boundary using the shapefile.
-- Smoothing: A light Gaussian filter (sigma=1) was applied to reduce interpolation artifacts.
 
 ## 3.5 Constrained Inversion for Aquifer Volume Estimation
 - Model parameterization: Aquifer parameters (undrained bulk modulus, Skempton's coefficient, effective porosity) were defined based on literature for the Alter do Chao Formation.
