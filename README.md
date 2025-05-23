@@ -61,41 +61,38 @@ The Region of Interest is equivalent to the spatial extent of the Sentinel-1 ima
 </table>
 
 ### Sentinel-1 
-Sentinel-1 images for each month were downloaded from the Copernicus Open Access Hub, selecting dates closest to the start of each month. XML annotation files containing precise geolocation co-ordinates for each pixel were used to georeference the datat and define the region of interest. VH polaisiation backscatter was processed to detect surface changes related to groundwater variations.
+- Sentinel-1 images for each month were downloaded from the Copernicus Open Access Hub, selecting dates closest to the start of each month. XML annotation files containing precise geolocation co-ordinates for each pixel were used to georeference the datat and define the region of interest. VH polaisiation backscatter was processed to detect surface changes related to groundwater variations.
 
 ![image alt](https://github.com/DomWeisser/Analysis-of-the-seasonality-impacts-on-Aquifers-in-the-Amazon-using-Sentinel-1-and-GRACE-data/blob/9f00de95f05ca22448960c83c9c252efbaf5a450/Images/monthly_backscatter_roi.png)
 
-The Sentinel-1 backscatter pattern around Manaus reflects the complex interaction between the extensive river network and seasonal hydrology, where the February peak (117.8) likely corresponds to peak flood season when rivers overflow and create large areas of standing water that produce strong radar returns
+Sentinel-1 VH polarisation backscatter is primarily influenced by surface roughness, vegetation structure and moisture content, with ttypical seaonal patterns in the Amazon showing higher values during the dry season (May-October) when exposed vegetation branches and moderate soil drying create optimal scattering conditions, and lower values during the wet season (November-April) when saturated soils and dense foilage reduce radar returns. My graph for 2019 above broadly follows this expected pattern, with backscatter rising through the dry season months and declining toward the wet season onset, but two critical outliers reveal extreme hydrological conditions. The February peak likely reflects extensive river flooding and floodplain inundation that created strong water-surface interactions during peak wet season, while the dramatic decrease in August/September suggests severe drought that exceeded normal dry season thresholds, causing river levels to drop critically and veegtation to die back so extensively that the landscape lost its typical radar scattering propoerties.
+
+### GRACE & GLDAS Data
+- The GRACE (Gravity Recvoery and Climate Experiment) satellite data provides measurements of Earth's gravitational field variations, which reflect changes in mass distribution including terrestrial water storage. The GRACE-FO Level-3 mascon (mass concentration) data represents total water storage (TWS) anomalies - the deviations from long-term average conditions - expressed as equivalent water thickness in cm. To isolate groundwater storage changes from the total water storage signal, a water balance approach was employed following the equation:
+
+GWSA = TWS - (SM + SWE  + CWS)
+
+| Acronym | Full Name |
+| --- | --- | 
+| GWSA | Groundwater Storage anomalies |
+| TWS | Total water storage anomalies (GRACE) |
+| SM | Soil moisture (GLDAS) |
+| SWE | Snow Water Equivalent (GLDAS) | 
+| CWS | Canopy Water Storage (GLDAS) |
+
+GRACE-FO data at 0.5* spatial resolution and GLDAS at 0.25* spatial resolution were interpolated to a common grid of 0.01 degrees (WHY) using bilinear interpolation to increase spatial resolution and be closer to Sentinel-1 resolution. 
+
+![image alt](https://github.com/DomWeisser/Analysis-of-the-seasonality-impacts-on-Aquifers-in-the-Amazon-using-Sentinel-1-and-GRACE-data/blob/96a7f93e4fe03898c53e6f7633d760f3eb8fff61/Images/groundwater_timeseries_roi_2019.png)
+
+The graph represents change detection rather than absolute volume calculations, tracking how groundwater storage increases or decreases relative to baseline conditions, where positive values indicate groundwater gain and negative values indicate depletion. The data reveals a pronounced seasonal cycle that closely follows the Amazon's distinct wet and dry seasons. From January to June, groundwater storage levels progressively increase from severe depletion (-0.83 m) to the least depleted state (-0.21 m), with the peak recovery occurring in June. This timing aligns with established hydrogeological principles, as there is typically a one to two-month lag between peak rainfall and groundwater recharge due to infiltration and percolation processes. From June onwards, groundwater levels steadily decrease throughout the dry season, reaching maximum depletion in November (-1.04 m) before showing signs of recovery in December (-0.99 m) as early wet season precipitation begins to influence groundwater levels. This pattern demonstrates the rapid response characteristics of the Alter do Chão Aquifer system, which is consistent with the relatively shallow depth and high permeability of Amazonian aquifers. The observed seasonal amplitude of approximately 0.83 meters between peak recovery and maximum depletion underscores the aquifer's sensitivity to climatic variability and its dependence on consistent seasonal precipitation for sustainable groundwater storage.
+
+## 3.3 Interpolation of Well Data
 
 
 
 
-### GRACE-FO 
-- GRACE data was masked to the ACA extent using the shapefile boundary
-- Monthly GRACE solutions were processed to extract Terrestrial Water Storage Anomalies (TWSA)
-- Data was reprojected to a consistent coordinate reference system (WGS84) and resampled to 0.01° resolution
-- Missing values were filled using a combination of spatial interpolation techniques and Gaussian filtering
-### GLDAS
-- Four soil moisture layers were extracted and summed to represent total soil moisture content
-- Snow water equivalent (SWE) and canopy water storage were also extracted
-- All GLDAS components were resampled to match the GRACE grid resolution
-- Spatial interpolation was applied to ensure consistent coverage
 
 
-## 3.2 Groundwater Storage Anomaly Calculation
-- GRACE-derived TWSA extraction: Monthly total water storage anomalies were extracted from GRACE-FO data.
-- GLDAS component isolation: Non-groundwater components (soil moisture, snow water equivalent, and canopy water) were extracted from GLDAS.
-- Groundwater Storage Anomaly (GWSA) calculation: GWSA was calculated by subtracting non-groundwater components from total water storage:
-GWSA = TWSA - (Soil Moisture + Snow Water Equivalent + Canopy Water)
-
-- Spatial masking: The resulting GWSA grids were masked to the ACA extent using the aquifer shapefile.
-- Unit conversion: All water storage components were converted to a consistent unit (mm water equivalent).
-
-## 3.3 Sentinel-1 Backscatter Analysis
-- Monthly backscatter extraction: Mean backscatter values were calculated for each month across the ACA extent.
-- Temporal trend analysis: Monthly backscatter values were plotted and analyzed for seasonal patterns.
-- Correlation with GWSA: SAR backscatter was statistically compared with GRACE-derived GWSA to evaluate radar sensitivity to groundwater changes.
-- Seasonal comparison: Wet and dry season backscatter signatures were compared to identify seasonal differences.
 
 ## 3.4 Spatial Interpolation of Well Data
 - Data preparation: Well data was filtered for each month and prepared for interpolation.
