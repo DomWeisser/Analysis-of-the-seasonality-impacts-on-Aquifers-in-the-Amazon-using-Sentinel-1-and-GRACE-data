@@ -98,32 +98,6 @@ $w_i = \frac{1}{(d_i + 0.01)^p}$
 
 
 
-## 3.5 Constrained Inversion for Aquifer Volume Estimation
-- Model parameterization: Aquifer parameters (undrained bulk modulus, Skempton's coefficient, effective porosity) were defined based on literature for the Alter do Chao Formation.
-- Parameter optimization: Poroelastic parameters were optimized to minimize the difference between predicted and observed water storage changes.
-- Two-layer model: A two-layer model was implemented to distinguish between confined and unconfined portions of the aquifer.
-- Volume calculation: Monthly groundwater volume changes were calculated using optimized parameters and satellite observations.
-- Spatial distribution: Volume changes were calculated for each grid cell and aggregated to estimate total aquifer volume change.
-
-## 3.6 Seasonal Analysis
-- Seasonal definition: Amazon wet season (November-April) and dry season (May-October) were defined for analysis.
-- Statistical comparison: Monthly and seasonal statistics were calculated for groundwater storage anomalies.
-- Transition analysis: Seasonal transitions (wet to dry and dry to wet) were analyzed for magnitude and timing.
-- Visualization: Multiple visualization techniques were employed:
-
-Time series plots of monthly groundwater changes
-Spatial maps showing groundwater distribution
-Seasonal box plots comparing wet and dry season patterns
-Transition arrows showing seasonal shifts
-Animations of monthly changes throughout the year
-
-## 3.7 Statistical Analysis
-- Monthly statistics: Basic statistical measures (mean, median, standard deviation, min, max) were calculated for each month.
-- Spatial variation: Coefficient of variation was calculated to quantify spatial heterogeneity in groundwater storage.
-- Percentile analysis: Quartiles (Q1, Q3) and interquartile range were calculated to assess distribution characteristics.
-- Area calculations: Areas with positive and negative groundwater storage anomalies were calculated for each month.
-- Month-to-month changes: Temporal derivatives were calculated to quantify rate and direction of change.
-- Seasonal comparison: Statistical significance tests were performed to compare wet and dry season characteristics.
 
 
 # Assumptions 
